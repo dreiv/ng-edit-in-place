@@ -1,1 +1,10 @@
-<h1>hello world!</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Admin</th>
+  </tr>
+  <tr *ngFor="let entity of entities; index as index">
+    <td>{{ entity.name }}</td>
+    <td>{{ entity.isAdmin }}</td>
+  </tr>
+</table>
