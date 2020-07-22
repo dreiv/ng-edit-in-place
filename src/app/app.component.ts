@@ -33,14 +33,14 @@ export class AppComponent implements OnInit {
     const control = this.getControl(index, field);
 
     if (control.valid) {
-      this.entities = this.entities.map((e, i) => {
+      this.entities = this.entities.map((entity, i) => {
         if (index === i) {
           return {
-            ...e,
+            ...entity,
             [field]: control.value
           };
         }
-        return e;
+        return entity;
       });
     }
   }

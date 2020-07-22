@@ -50,6 +50,11 @@ export class EditableComponent implements OnInit, OnDestroy {
     this.unsubscribe$.next();
   }
 
+  toViewMode(): void {
+    this.update.next();
+    this.mode = 'view';
+  }
+
   private viewModeHandler(): void {
     fromEvent(this.element, 'dblclick')
       .pipe(takeUntil(this.unsubscribe$))

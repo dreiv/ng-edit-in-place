@@ -13,7 +13,7 @@
           <input
             [formControl]="getControl(index, 'name')"
             focusable
-            editableOnEnter
+            editableOnEnterBlur
           />
         </ng-template>
       </editable>
@@ -25,9 +25,24 @@
           <input
             type="checkbox"
             [formControl]="getControl(index, 'isAdmin')"
-          />{{ entity.isAdmin }}
+          />{{ getControl(index, 'isAdmin').value }}
         </ng-template>
       </editable>
     </td>
   </tr>
 </table>
+
+--- Original Entities ---
+<br />
+
+<code>
+  {{ entities | json }}
+</code>
+
+<br />
+<br />
+
+--- ArrayForm Value ---
+
+<br />
+<code>{{ controls.value | json }}</code>
