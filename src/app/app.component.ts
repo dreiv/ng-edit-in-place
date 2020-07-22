@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormGroup,
-  FormControl,
-  Validators,
-  AbstractControl
-} from '@angular/forms';
+import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +25,23 @@ export class AppComponent implements OnInit {
     this.controls = new FormArray(toGroups);
   }
 
-  getControl(index: number, field: string): AbstractControl | null {
-    return this.controls.at(index).get(field);
+  getControl(index: number, field: string): FormControl {
+    return this.controls.at(index).get(field) as FormControl;
+  }
+
+  updateField(index: number, field: string): void {
+    const control = this.getControl(index, field);
+
+    if (control.valid) {
+      this.entities = this.entities.map((e, i) => {
+        if (index === i) {
+          return {
+            ...e,
+            [field]: control.value
+          };
+        }
+        return e;
+      });
+    }
   }
 }

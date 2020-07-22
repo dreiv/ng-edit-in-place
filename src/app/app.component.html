@@ -1,10 +1,33 @@
+<h1>Double click to edit</h1>
+
 <table>
   <tr>
     <th>Name</th>
     <th>Admin</th>
   </tr>
   <tr *ngFor="let entity of entities; index as index">
-    <td>{{ entity.name }}</td>
-    <td>{{ entity.isAdmin }}</td>
+    <td>
+      <editable (update)="updateField(index, 'name')">
+        <ng-template viewMode>{{ entity.name }}</ng-template>
+        <ng-template editMode>
+          <input
+            [formControl]="getControl(index, 'name')"
+            focusable
+            editableOnEnter
+          />
+        </ng-template>
+      </editable>
+    </td>
+    <td>
+      <editable (update)="updateField(index, 'isAdmin')">
+        <ng-template viewMode>{{ entity.isAdmin }}</ng-template>
+        <ng-template editMode>
+          <input
+            type="checkbox"
+            [formControl]="getControl(index, 'isAdmin')"
+          />{{ entity.isAdmin }}
+        </ng-template>
+      </editable>
+    </td>
   </tr>
 </table>
